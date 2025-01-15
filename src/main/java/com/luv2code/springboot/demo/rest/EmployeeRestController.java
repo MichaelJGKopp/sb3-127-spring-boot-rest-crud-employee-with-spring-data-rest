@@ -45,7 +45,13 @@ public class EmployeeRestController {
     @GetMapping("/employees/{employeeId}")
     Employee getEmployee(@PathVariable int employeeId) {
 
-        return employeeService.findById(employeeId);
+        Employee employee = employeeService.findById(employeeId);
+
+        if (employee == null) {
+            throw new RuntimeException("Employee id not found - " + employeeId);
+        }
+
+        return employee;
     }
 
     @PutMapping("/employees")
