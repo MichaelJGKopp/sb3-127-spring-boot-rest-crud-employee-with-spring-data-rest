@@ -33,7 +33,7 @@ public class EmployeeRestController {
     @PostMapping("/employees")
     void createEmployee(@RequestBody Employee employee) {
 
-        employeeService.create(employee);
+        employeeService.save(employee);
     }
 
     @GetMapping("/employees")
@@ -51,12 +51,12 @@ public class EmployeeRestController {
     @PutMapping("/employees")
     void updateEmployee(@RequestBody Employee employee) {
 
-        employeeService.update(employee);
+        employeeService.save(employee);
     }
 
     @DeleteMapping("/employees/{employeeId}")
     void deleteEmployee(@PathVariable int employeeId) {
 
-        employeeService.delete(employeeId);
+        employeeService.deleteById(employeeId);
     }
 }

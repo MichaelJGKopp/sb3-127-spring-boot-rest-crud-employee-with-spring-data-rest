@@ -19,12 +19,6 @@ public class EmployeeDAOJpaImpl implements EmployeeDAO {
     }
 
     @Override
-    public void create(Employee employee) {
-
-        entityManager.persist(employee);
-    }
-
-    @Override
     public List<Employee> findAll() {
 
         TypedQuery<Employee> typedQuery = entityManager.createQuery("SELECT e FROM Employee e", Employee.class);
@@ -43,15 +37,15 @@ public class EmployeeDAOJpaImpl implements EmployeeDAO {
     }
 
     @Override
-    public void update(Employee employee) {
+    public Employee save(Employee employee) {
 
-        entityManager.merge(employee);
+        return entityManager.merge(employee); // save or update, insert returns with Id
     }
 
     @Override
-    public void delete(Integer id) {
+    public void deleteById(Integer id) {
 
-        Employee employee = findById(id);
+        Employee employee = entityManager.find(Employee.class, id);
         entityManager.remove(employee);
     }
 }

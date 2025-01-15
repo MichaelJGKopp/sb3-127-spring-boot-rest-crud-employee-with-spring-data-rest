@@ -19,12 +19,6 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    @Transactional
-    public void create(Employee employee) {
-        employeeDAO.create(employee);
-    }
-
-    @Override
     public List<Employee> findAll() {
         return employeeDAO.findAll();
     }
@@ -36,13 +30,13 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     @Transactional
-    public void update(Employee employee) {
-        employeeDAO.update(employee);
+    public Employee save(Employee employee) {
+        return employeeDAO.save(employee);
     }
 
     @Override
     @Transactional
-    public void delete(Integer id) {
-        employeeDAO.delete(id);
+    public void deleteById(Integer id) {
+        employeeDAO.deleteById(id);
     }
 }
