@@ -5,7 +5,6 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -20,7 +19,6 @@ public class EmployeeDAOJpaImpl implements EmployeeDAO {
     }
 
     @Override
-    @Transactional
     public void create(Employee employee) {
 
         entityManager.persist(employee);
@@ -45,14 +43,12 @@ public class EmployeeDAOJpaImpl implements EmployeeDAO {
     }
 
     @Override
-    @Transactional
     public void update(Employee employee) {
 
         entityManager.merge(employee);
     }
 
     @Override
-    @Transactional
     public void delete(Integer id) {
 
         Employee employee = findById(id);

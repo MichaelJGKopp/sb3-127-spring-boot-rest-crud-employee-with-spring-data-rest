@@ -4,6 +4,7 @@ import com.luv2code.springboot.demo.dao.EmployeeDAO;
 import com.luv2code.springboot.demo.entity.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -18,6 +19,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
+    @Transactional
     public void create(Employee employee) {
         employeeDAO.create(employee);
     }
@@ -33,11 +35,13 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
+    @Transactional
     public void update(Employee employee) {
         employeeDAO.update(employee);
     }
 
     @Override
+    @Transactional
     public void delete(Integer id) {
         employeeDAO.delete(id);
     }
