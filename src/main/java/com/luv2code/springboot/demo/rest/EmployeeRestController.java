@@ -31,7 +31,7 @@ public class EmployeeRestController {
     }
 
     @PostMapping("/employees")
-    Employee addEmployee(@RequestBody Employee employee) {
+    public Employee addEmployee(@RequestBody Employee employee) {
 
         // in case they pass an id in JSON ... set id to 0 -> forces save instead of update
         employee.setId(0);
@@ -41,13 +41,13 @@ public class EmployeeRestController {
     }
 
     @GetMapping("/employees")
-    List<Employee> getEmployees() {
+    public List<Employee> getEmployees() {
 
         return employeeService.findAll();
     }
 
     @GetMapping("/employees/{employeeId}")
-    Employee getEmployee(@PathVariable int employeeId) {
+    public Employee getEmployee(@PathVariable int employeeId) {
 
         Employee employee = employeeService.findById(employeeId);
 
@@ -59,13 +59,13 @@ public class EmployeeRestController {
     }
 
     @PutMapping("/employees")
-    void updateEmployee(@RequestBody Employee employee) {
+    public Employee updateEmployee(@RequestBody Employee employee) {
 
-        employeeService.save(employee);
+        return employeeService.save(employee);
     }
 
     @DeleteMapping("/employees/{employeeId}")
-    void deleteEmployee(@PathVariable int employeeId) {
+    public void deleteEmployee(@PathVariable int employeeId) {
 
         employeeService.deleteById(employeeId);
     }
