@@ -31,9 +31,9 @@ public class EmployeeRestController {
     }
 
     @PostMapping("/employees")
-    void createEmployee(@RequestBody Employee employee) {
+    Employee createEmployee(@RequestBody Employee employee) {
 
-        employeeService.save(employee);
+        return employeeService.save(employee);
     }
 
     @GetMapping("/employees")
