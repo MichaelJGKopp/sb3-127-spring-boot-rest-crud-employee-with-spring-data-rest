@@ -10,11 +10,11 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Repository
-public class EmployeeDAOImpl implements EmployeeDAO {
+public class EmployeeDAOJpaImpl implements EmployeeDAO {
     private EntityManager entityManager;
 
     @Autowired
-    public EmployeeDAOImpl(EntityManager entityManager) {
+    public EmployeeDAOJpaImpl(EntityManager entityManager) {
 
         this.entityManager = entityManager;
     }
@@ -27,7 +27,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
     }
 
     @Override
-    public List<Employee> readAll() {
+    public List<Employee> findAll() {
 
         TypedQuery<Employee> typedQuery = entityManager.createQuery("SELECT e FROM Employee e", Employee.class);
 
@@ -35,7 +35,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
     }
 
     @Override
-    public Employee readById(int id) {
+    public Employee findById(int id) {
 
         return entityManager.find(Employee.class, id);
 //        TypedQuery<Employee> typedQuery
@@ -55,7 +55,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
     @Transactional
     public void delete(Integer id) {
 
-        Employee employee = readById(id);
+        Employee employee = findById(id);
         entityManager.remove(employee);
     }
 }

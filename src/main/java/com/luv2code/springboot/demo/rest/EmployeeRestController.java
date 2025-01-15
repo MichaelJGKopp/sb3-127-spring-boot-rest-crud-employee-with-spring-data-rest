@@ -9,12 +9,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@org.springframework.web.bind.annotation.RestController
+@RestController
 @RequestMapping("/api")
-public class RestController {
+public class EmployeeRestController {
 
     private EmployeeDAO employeeDAO;
 //    private List<Employee> employees;
@@ -25,7 +26,7 @@ public class RestController {
 //        employees = employeeDAO.readAll();
 //    }
 
-    public RestController(EmployeeDAO employeeDAO) {
+    public EmployeeRestController(EmployeeDAO employeeDAO) {
         this.employeeDAO = employeeDAO;
     }
 
@@ -38,13 +39,13 @@ public class RestController {
     @GetMapping("/employees")
     List<Employee> getEmployees() {
 
-        return employeeDAO.readAll();
+        return employeeDAO.findAll();
     }
 
     @GetMapping("/employees/{employeeId}")
     Employee getEmployee(@PathVariable int employeeId) {
 
-        return employeeDAO.readById(employeeId);
+        return employeeDAO.findById(employeeId);
     }
 
     @PutMapping("/employees")
