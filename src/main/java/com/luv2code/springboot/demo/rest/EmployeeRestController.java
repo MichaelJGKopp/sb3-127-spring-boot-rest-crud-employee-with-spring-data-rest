@@ -1,7 +1,7 @@
 package com.luv2code.springboot.demo.rest;
 
-import com.luv2code.springboot.demo.dao.EmployeeDAO;
 import com.luv2code.springboot.demo.entity.Employee;
+import com.luv2code.springboot.demo.service.EmployeeService;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,7 +17,7 @@ import java.util.List;
 @RequestMapping("/api")
 public class EmployeeRestController {
 
-    private EmployeeDAO employeeDAO;
+    private EmployeeService employeeService;
 //    private List<Employee> employees;
 
 //    @PostConstruct
@@ -26,37 +26,37 @@ public class EmployeeRestController {
 //        employees = employeeDAO.readAll();
 //    }
 
-    public EmployeeRestController(EmployeeDAO employeeDAO) {
-        this.employeeDAO = employeeDAO;
+    public EmployeeRestController(EmployeeService employeeService) {
+        this.employeeService = employeeService;
     }
 
     @PostMapping("/employees")
     void createEmployee(@RequestBody Employee employee) {
 
-        employeeDAO.create(employee);
+        employeeService.create(employee);
     }
 
     @GetMapping("/employees")
     List<Employee> getEmployees() {
 
-        return employeeDAO.findAll();
+        return employeeService.findAll();
     }
 
     @GetMapping("/employees/{employeeId}")
     Employee getEmployee(@PathVariable int employeeId) {
 
-        return employeeDAO.findById(employeeId);
+        return employeeService.findById(employeeId);
     }
 
     @PutMapping("/employees")
     void updateEmployee(@RequestBody Employee employee) {
 
-        employeeDAO.update(employee);
+        employeeService.update(employee);
     }
 
     @DeleteMapping("/employees/{employeeId}")
     void deleteEmployee(@PathVariable int employeeId) {
 
-        employeeDAO.delete(employeeId);
+        employeeService.delete(employeeId);
     }
 }
