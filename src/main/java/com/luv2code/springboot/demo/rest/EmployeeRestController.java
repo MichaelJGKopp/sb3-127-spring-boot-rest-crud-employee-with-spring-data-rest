@@ -18,13 +18,6 @@ import java.util.List;
 public class EmployeeRestController {
 
     private EmployeeService employeeService;
-//    private List<Employee> employees;
-
-//    @PostConstruct
-//    public void loadData() {
-//
-//        employees = employeeDAO.readAll();
-//    }
 
     public EmployeeRestController(EmployeeService employeeService) {
         this.employeeService = employeeService;
